@@ -50,7 +50,9 @@ public class ChatCommand implements CommandExecutor{
                         OpChat.opChat.reloadConfig();
                         OpChat.opChat.saveDefaultConfig();
                         sender.sendMessage(placeHolders(ConfigUtils.getString("messages.chat.reloadConfig"), sender));
-                    } else{
+                    } else if (args[0].equalsIgnoreCase("help")){
+                        sendHelpMessage(sender);
+                    } else {
                         sender.sendMessage(placeHolders(ConfigUtils.getString("messages.chat.usage"), sender));
                     }
                 } else {
@@ -65,6 +67,10 @@ public class ChatCommand implements CommandExecutor{
 
     public String placeHolders(String message, CommandSender sender){
         return message.replace("$nick$", sender.getName());
-        //$nick$ - nick osoby,
+    }
+
+    private void sendHelpMessage(CommandSender sender){
+        Boolean delayChat = ConfigUtils.getBoolean("delayChat.enabled");
+        sender.sendMessage("DelayChat enabled: " + delayChat);
     }
 }

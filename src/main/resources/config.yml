@@ -11,11 +11,12 @@ messages:
       already: '&8» &cChat is already turn off'
     reloadConfig: '&8» &7Config reloaded!'
     cantTalk: '&8» &cYou cant write beacause &lchat is turned off&c!'
-    usage: '&8» &7/chat <&f&oclear&7, &f&ooff&7, &f&oon&7, &f&oreload&7>'
+    usage: '&8» &7/chat <&f&oclear&7, &f&ooff&7, &f&oon&7, &f&oreload&7, &f&ohelp&7>'
     withoutPermission: '&8» &cYou do not have permission to use this command!'
     badUsage: '&8» &cBad usage; &7/chat <&f&oclear&7, &f&ooff&7, &f&oon&7, &f&oreload&7>'
 
 delayChat:
+  enabled: true
   inSeconds: 3
   delayChatWarn: '&8» &cYou can write every &f&l%secondsDelayChat% &cseconds!'
 
@@ -64,10 +65,20 @@ spy:
   activatedSpy: '&8» &7Activated Spy mode!'
   deactivatedSpy: '&8» &7Deactivated Spy mode!'
 
+adminChat:
+  enabled: true
+  messageFormat: '&6[AC&6] &7- &f&l%player%&7: &f%message%'
+  messageToggle: '&8» &7Toggled Admin Chat'
+  badUsage: '&8» &cBad usage!'
+
 #You can create unlimited styles of groups format, every diffrent for another group
 chat:
   groupFormat:
     default: '%s &7» &f%s'
+  joinFormat:
+    default: '&e%prefix%&f%player% &ejoined the server!'
+  leaveFormat:
+    default: '&e%prefix%&f%player% &eleft the server!'
   manager:
     antiTwiceMessages:
       enabled: true

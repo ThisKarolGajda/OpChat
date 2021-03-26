@@ -127,37 +127,8 @@ public class ChatManagerEvent implements Listener {
      */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /*
-    customowe wiadomosc podczas dolaczania i wychodzenia
-    admin chat z prefixami itd
     blokowanie slow
     cooldown na msg
-    /chat help (zmienienie troche)
-    /chat admin (settings)
      */
 }

@@ -14,7 +14,7 @@ public class AutoMessagesRunnable implements Listener {
     public AutoMessagesRunnable(PluginController plugin) {
         autoMessageStart(messagesFromConfig);
     }
-    List<String> messagesFromConfig = ConfigUtils.config().getStringList("");
+    List<String> messagesFromConfig = ConfigUtils.config().getStringList("autoMessages.messages");
 
     public static void autoMessageStart(List<String> messagesFromConfig){
         new BukkitRunnable() {
@@ -26,7 +26,7 @@ public class AutoMessagesRunnable implements Listener {
                     i++;
                 } else i=0;
             }
-        }.runTaskTimerAsynchronously(OpChat.getInstance(), ConfigUtils.getInt("autoMessages.interval"), 0);
+        }.runTaskTimerAsynchronously(OpChat.getInstance(), ConfigUtils.getInt("autoMessages.interval")*20, ConfigUtils.getInt("autoMessages.interval")*20);
     }
 
 }

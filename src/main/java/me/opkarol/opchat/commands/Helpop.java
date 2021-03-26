@@ -40,10 +40,10 @@ public class Helpop implements CommandExecutor{
     }
 
 
-    public String supportMessage(CommandSender p, String[] args){
+    public String supportMessage(CommandSender player, String[] args){
         RegisteredServiceProvider<Chat> chatProvider = Bukkit.getServer().getServicesManager().getRegistration(net.milkbowl.vault.chat.Chat.class);
         Chat chat = chatProvider.getProvider();
-        String prefix = chat.getPlayerPrefix((Player) p);
-        return FormatUtils.formatText(ConfigUtils.getString("support.message").replace("$prefix$", getPrefix()).replace("$nick$", p.getName()).replace("$message$", argBuilder(args, 0)).replace("$playerprefix$", prefix));
+        String prefix = chat.getPlayerPrefix((Player) player);
+        return FormatUtils.formatText(ConfigUtils.getString("support.message").replace("$prefix$", getPrefix()).replace("$nick$",player.getName()).replace("$message$", argBuilder(args, 0)).replace("$playerprefix$", prefix));
     }
 }

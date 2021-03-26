@@ -1,8 +1,8 @@
 package me.opkarol.opchat.commands;
 
-import me.opkarol.opchat.OpChat;
 import me.opkarol.opchat.PluginController;
 import me.opkarol.opchat.utils.ConfigUtils;
+import me.opkarol.opchat.utils.FormatUtils;
 import net.milkbowl.vault.chat.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -34,11 +34,11 @@ public class MeCommand implements CommandExecutor{
         return ConfigUtils.getString("me.prefix");
     }
 
-    private String mePrefix(CommandSender p, String[] args){
+    private String mePrefix(CommandSender player, String[] args){
         RegisteredServiceProvider<Chat> chatProvider = Bukkit.getServer().getServicesManager().getRegistration(net.milkbowl.vault.chat.Chat.class);
         Chat chat = chatProvider.getProvider();
-        String prefix = chat.getPlayerPrefix((Player) p);
-        return Objects.requireNonNull(ConfigUtils.getString("me.message")).replace("$prefix$", getPrefix()).replace("$nick$", p.getName()).replace("$message$", argBuilder(args, 0)).replace("$playerprefix$", prefix);
+        String prefix = FormatUtils.formatText(chat.getPlayerPrefix((Player) player));
+        return Objects.requireNonNull(ConfigUtils.getString("me.message")).replace("$prefix$", getPrefix()).replace("$nick$", player.getName()).replace("$message$", argBuilder(args, 0)).replace("$playerprefix$", prefix);
 
     }
 }

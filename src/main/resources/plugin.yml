@@ -23,3 +23,5 @@ commands:
     aliases: r
   msgspy:
     aliases: spy
+  adminchat:
+    aliases: ac

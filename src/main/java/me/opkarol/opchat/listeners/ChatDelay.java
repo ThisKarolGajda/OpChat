@@ -22,20 +22,22 @@ public class ChatDelay implements Listener {
 
     @EventHandler
     public void onChat(AsyncPlayerChatEvent event) {
-        if (!event.getPlayer().hasPermission("skyisland.chatsystem.bypass") || !event.getPlayer().isOp()) {
-            UUID id = event.getPlayer().getUniqueId();
-            if (!delayMap.containsKey(id)) {
+        if(ConfigUtils.getBoolean("delayChat.enabled")) {
+            if (!event.getPlayer().hasPermission("opchat.delay.bypass") || !event.getPlayer().isOp()) {
+                UUID id = event.getPlayer().getUniqueId();
+                if (!delayMap.containsKey(id)) {
+                    delayMap.put(id, currentTimeMillis());
+                    return;
+                }
+                long lastChat = delayMap.get(id);
+                long now = currentTimeMillis();
+                long diff = now - lastChat;
+                if (!(diff >= SecondsDelay() * 1000L)) {
+                    event.getPlayer().sendMessage(ConfigUtils.getString("messages.delayChat.delayChatWarn").replace("%secondsDelayChat%", SecondsChatDelay()));
+                    event.setCancelled(true);
+                }
                 delayMap.put(id, currentTimeMillis());
-                return;
             }
-            long lastChat = delayMap.get(id);
-            long now = currentTimeMillis();
-            long diff = now - lastChat;
-            if (!(diff >= SecondsDelay()* 1000L)){
-                event.getPlayer().sendMessage(ConfigUtils.getString("messages.delayChat.delayChatWarn").replace("%secondsDelayChat%", SecondsChatDelay()));
-                event.setCancelled(true);
-            }
-            delayMap.put(id, currentTimeMillis());
         }
     }
     private int SecondsDelay(){
