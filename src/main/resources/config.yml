@@ -1,0 +1,89 @@
+messages:
+  chat:
+    clear: '&8» &7Chat was cleared by &f&l$nick$'
+    turnOn:
+      global: '&8» &7Chat was turned on by &f&l$nick$!'
+      player: '&8» &7You turn on chat!'
+      already: '&8» &cChat is already turn on!'
+    turnOff:
+      global: '&8» &7Chat was turned off by &f&l$nick$!'
+      player: '&8» &7You turn off chat!'
+      already: '&8» &cChat is already turn off'
+    reloadConfig: '&8» &7Config reloaded!'
+    cantTalk: '&8» &cYou cant write beacause &lchat is turned off&c!'
+    usage: '&8» &7/chat <&f&oclear&7, &f&ooff&7, &f&oon&7, &f&oreload&7>'
+    withoutPermission: '&8» &cYou do not have permission to use this command!'
+    badUsage: '&8» &cBad usage; &7/chat <&f&oclear&7, &f&ooff&7, &f&oon&7, &f&oreload&7>'
+
+delayChat:
+  inSeconds: 3
+  delayChatWarn: '&8» &cYou can write every &f&l%secondsDelayChat% &cseconds!'
+
+autoMessages:
+  interval: 100
+  messages:
+    - 'This is a message1'
+    - 'This is a message2'
+    - 'This is a message3'
+
+broadcast:
+  prefix: '&8[&6&lBroadcast&8]&r '
+
+support:
+  prefix: '&8[&b&lHelpop&8]&r'
+  message: '$prefix$$playerprefix$ &f&l$nick$&f: $message$'
+
+me:
+  prefix: '&c&lME'
+  message: '$prefix$$playerprefix$ &f&l$nick$&f: $message$'
+
+msg:
+  receiveFormat: '&6[&8%sender%&6] &7→ &6[&8Ty&6]&7: &f%message%'
+  sendFormat: '&6[&8Ty&6] &7→ &6[&8%receiver%&6]&7: &f%message%'
+  canMessageYourself: false
+  cannotMsgYourselfMessage: '&8» &cYou can not write to yourself!'
+  youCantMessagePlayer: '&8» &cYou can not write messages to this player!'
+  badUsage: '&8» &cBad usage; &7/msg &oplayer message&7'
+  playerOffline: '&8» &cPlayer is offline!'
+
+reply:
+  badUsage: '&8» &cBad usage; &7/reply &omessage&7'
+  lastPersonOffline: '&8» &cLast person who talk with you, is offline!'
+
+ignore:
+  added: '&8» &7Added &f&l%player% &7to ignored persons'
+  removed: '&8» &7Removed &f&l%player% &7from ignored persons!'
+  isntOnline: '&8» &cPlayer is offline!'
+  badUsage: '&8» &cBad usage; &7/ignore &oplayer&7'
+  cannotYourself: '&8» &cCannot ignore yourself!'
+
+spy:
+  format: '&6[&cSpy&6] &6[&8%sender%&6] &7→ &6[&8%receiver%&6]&7: &f%message%'
+  permission: 'opchat.spy'
+  withoutPermission: '&8» &cYou do not have permission!'
+  activatedSpy: '&8» &7Activated Spy mode!'
+  deactivatedSpy: '&8» &7Deactivated Spy mode!'
+
+#You can create unlimited styles of groups format, every diffrent for another group
+chat:
+  groupFormat:
+    default: '%s &7» &f%s'
+  manager:
+    antiTwiceMessages:
+      enabled: true
+      message: '&8» &cYou can not write the same message twice!'
+      permission: 'opchat.parrotbypass'
+      #if you don't know what is 'deleteAfterTime', don't change it!
+      deleteAfterTime: 60
+    colorFormatting:
+      enabled: true
+      permission: 'opchat.colorformatting'
+    unicodeEmojis:
+      enabled: true
+      permission: 'opchat.unicodeemojis'
+      emojis:
+        <3: '❤'
+        ':star:': '★'
+    periodAndBigLetter:
+      enabled: true
+      permission: 'opchat.period'

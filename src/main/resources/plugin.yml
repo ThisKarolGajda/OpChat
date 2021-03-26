@@ -1,0 +1,25 @@
+name: OpChat
+version: ${project.version}
+main: me.opkarol.opchat.OpChat
+api-version: 1.16
+prefix: OpChat Beta-Tested
+load: STARTUP
+depend: [ Vault, LuckPerms ]
+authors: [ OpKarol ]
+description: This free plugin allows you to change your chat like super duper good.
+website: undefined
+
+commands:
+  chat:
+    aliases: c
+  broadcast:
+    aliases: bc
+  helpop:
+  me:
+  msg:
+    aliases: write
+  ignore:
+  reply:
+    aliases: r
+  msgspy:
+    aliases: spy
