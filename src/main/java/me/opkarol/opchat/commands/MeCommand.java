@@ -1,6 +1,7 @@
 package me.opkarol.opchat.commands;
 
 import me.opkarol.opchat.PluginController;
+import me.opkarol.opchat.blockWords.blockingWordsClass;
 import me.opkarol.opchat.utils.ConfigUtils;
 import me.opkarol.opchat.utils.FormatUtils;
 import net.milkbowl.vault.chat.Chat;
@@ -23,6 +24,12 @@ public class MeCommand implements CommandExecutor{
         if (sender != null) {
             if (sender.hasPermission("skyisland.chatsystem.me") || sender.isOp()) {
                 if (args.length != 0) {
+                    if (!sender.hasPermission("opchat.blockwords.bypass") || !sender.isOp()) {
+                        if (blockingWordsClass.hasBlockedWord(mePrefix(sender, args))) {
+                            blockingWordsClass.sendPlayerWarning((Player) sender);
+                            return false;
+                        }
+                    }
                     Bukkit.broadcastMessage(mePrefix(sender, args));
                 } else sender.sendMessage(ConfigUtils.getString("messages.chat.badUsage"));
             } else sender.sendMessage(ConfigUtils.getString("messages.chat.withoutPermission"));

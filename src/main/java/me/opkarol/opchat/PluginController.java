@@ -1,6 +1,7 @@
 package me.opkarol.opchat;
 
 import me.opkarol.opchat.autoMessages.AutoMessagesRunnable;
+import me.opkarol.opchat.blockWords.BlockWordsEvent;
 import me.opkarol.opchat.commands.Broadcast;
 import me.opkarol.opchat.commands.ChatCommand;
 import me.opkarol.opchat.commands.Helpop;
@@ -58,6 +59,7 @@ public class PluginController implements Listener {
         pluginManager.registerEvents(new JoinMessage(this), getInstance());
         pluginManager.registerEvents(new LeaveMessage(this), getInstance());
         pluginManager.registerEvents(new AdminChat(this), getInstance());
+        pluginManager.registerEvents(new BlockWordsEvent(this), getInstance());
     }
 
     public void saveConfig(){

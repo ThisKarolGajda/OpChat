@@ -30,6 +30,10 @@ autoMessages:
 broadcast:
   prefix: '&8[&6&lBroadcast&8]&r '
 
+blockedWords:
+  words: 'fuck;shit'
+  warning: '&8» &cDo not use this word!'
+
 support:
   prefix: '&8[&b&lHelpop&8]&r'
   message: '$prefix$$playerprefix$ &f&l$nick$&f: $message$'
