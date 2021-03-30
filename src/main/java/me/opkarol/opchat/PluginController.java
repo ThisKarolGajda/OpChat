@@ -16,6 +16,8 @@ import me.opkarol.opchat.msg.Ignore;
 import me.opkarol.opchat.msg.MainMsg;
 import me.opkarol.opchat.msg.Reply;
 import me.opkarol.opchat.msg.Spy;
+import me.opkarol.opchat.party.PartyCommand;
+import me.opkarol.opchat.party.PartyHolder;
 import net.milkbowl.vault.chat.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
@@ -47,6 +49,7 @@ public class PluginController implements Listener {
         Bukkit.getPluginCommand("reply").setExecutor(new Reply(this));
         Bukkit.getPluginCommand("spy").setExecutor(new Spy(this));
         Bukkit.getPluginCommand("adminchat").setExecutor(new AdminChat(this));
+        Bukkit.getPluginCommand("party").setExecutor(new PartyCommand(this));
 
     }
 
@@ -64,6 +67,8 @@ public class PluginController implements Listener {
 
     public void saveConfig(){
         OpChat.getInstance().saveDefaultConfig();
+        MessagesFile.saveFile();
+        PartyHolder.saveFile();
     }
 
 

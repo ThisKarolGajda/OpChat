@@ -19,7 +19,7 @@ public class PlayerChatEvent implements Listener {
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event){
         Player player = event.getPlayer();
-        ConfigUtils.getString("chat.groupFormat." + getGroup(player));
+        ConfigUtils.getMessage("chat.groupFormat." + getGroup(player));
         event.setFormat(ConfigUtils.getString("chat.groupFormat."+getGroup(player)).replace("$prefix", getPrefix(event.getPlayer())));
     }
 

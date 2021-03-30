@@ -17,8 +17,8 @@ public class CheckingChatEvent implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void onChat(AsyncPlayerChatEvent e){
         Player p = e.getPlayer();
-        if (!p.hasPermission("skyisland.chatsystem.bypass") && !chat) {
-            p.sendMessage(ConfigUtils.getString("messages.chat.cantTalk"));
+        if (!p.hasPermission("opchat.chatbypass") && !chat) {
+            p.sendMessage(ConfigUtils.getMessage("messages.chat.cantTalk"));
             e.setCancelled(true);
         }
     }

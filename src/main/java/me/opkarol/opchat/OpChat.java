@@ -11,7 +11,9 @@ public final class OpChat extends JavaPlugin {
     public void onEnable() {
         opChat = this;
         controller = new PluginController(this);
-        // Plugin startup logic
+        int pluginId = 10827; // bStats
+        Metrics metrics = new Metrics(this, pluginId);
+
 
     }
 

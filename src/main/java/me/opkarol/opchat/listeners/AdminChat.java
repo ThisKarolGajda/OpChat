@@ -23,18 +23,18 @@ public class AdminChat implements Listener, CommandExecutor {
         if(ConfigUtils.getBoolean("adminChat.enabled")) {
 
             if (args.length == 0) {
-                sender.sendMessage(ConfigUtils.getString("adminChat.badUsage"));
+                sender.sendMessage(ConfigUtils.getMessage("adminChat.badUsage"));
                 return false;
             }
             if (args[0].equalsIgnoreCase("toggle")) {
                 Player player = (Player) sender;
                 UUID playerId = player.getUniqueId();
                 if (AdminChatHolder.isActiveAC(playerId)) {
-                    sender.sendMessage(ConfigUtils.getString("adminChat.messageToggle"));
+                    sender.sendMessage(ConfigUtils.getMessage("adminChat.messageToggle"));
                     AdminChatHolder.removeActiveAC(playerId);
                 } else {
                     AdminChatHolder.setActiveAC(playerId);
-                    sender.sendMessage(ConfigUtils.getString("adminChat.messageToggle"));
+                    sender.sendMessage(ConfigUtils.getMessage("adminChat.messageToggle"));
                 }
                 return false;
             }
@@ -61,7 +61,7 @@ public class AdminChat implements Listener, CommandExecutor {
     public void sendMessage(String message, CommandSender sender){
         for(Player player : Bukkit.getOnlinePlayers()){
             if (player.hasPermission("opchat.adminchat") || player.isOp()) {
-                String format = ConfigUtils.getString("adminChat.messageFormat");
+                String format = ConfigUtils.getMessage("adminChat.messageFormat");
                 String messageToSend = format.replace("%player%", sender.getName()).replace("%message%", message);
                 player.sendMessage(FormatUtils.formatText(messageToSend));
             }

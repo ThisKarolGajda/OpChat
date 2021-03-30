@@ -25,3 +25,4 @@ commands:
     aliases: spy
   adminchat:
     aliases: ac
+  party:

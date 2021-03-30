@@ -23,7 +23,7 @@ public class Ignore implements CommandExecutor {
         if (args.length != 0) {
             Player playerToIgnore = Bukkit.getPlayer(args[0]);
             if(sender==playerToIgnore){
-                sender.sendMessage(ConfigUtils.getString("ignore.cannotYourself"));
+                sender.sendMessage(ConfigUtils.getMessage("ignore.cannotYourself"));
                 return false;
             }
             if (playerToIgnore != null) {
@@ -49,21 +49,21 @@ public class Ignore implements CommandExecutor {
                 }
 
             } else {
-                sender.sendMessage(ConfigUtils.getString("ignore.isntOnline"));
+                sender.sendMessage(ConfigUtils.getMessage("ignore.isntOnline"));
             }
         } else {
-            sender.sendMessage(ConfigUtils.getString("ignore.badUsage"));
+            sender.sendMessage(ConfigUtils.getMessage("ignore.badUsage"));
         }
 
         return true;
     }
 
     private String addedPlayer(Player player){
-        return ConfigUtils.getString("ignore.added").replace("%player%", player.getName());
+        return ConfigUtils.getMessage("ignore.added").replace("%player%", player.getName());
     }
 
     private String removedPlayer(Player player){
-        return ConfigUtils.getString("ignore.removed").replace("%player%", player.getName());
+        return ConfigUtils.getMessage("ignore.removed").replace("%player%", player.getName());
     }
 
 }

@@ -22,7 +22,7 @@ public class JoinMessage implements Listener {
 
         RegisteredServiceProvider<Chat> chatProvider = Bukkit.getServer().getServicesManager().getRegistration(net.milkbowl.vault.chat.Chat.class);
         Chat chat = chatProvider.getProvider();
-        String prefix = chat.getPlayerPrefix((Player) player);
+        String prefix = chat.getPlayerPrefix(player);
 
         String message = ConfigUtils.getString("chat.joinFormat."+chat.getPrimaryGroup(player));
         message = FormatUtils.formatText(message.replace("%player%", player.getName()).replace("%prefix%", prefix));

@@ -36,7 +36,7 @@ public class Helpop implements CommandExecutor{
         return true;
     }
     public String getPrefix(){
-        return ConfigUtils.getString("support.prefix");
+        return ConfigUtils.getMessage("support.prefix");
     }
 
 
@@ -44,6 +44,6 @@ public class Helpop implements CommandExecutor{
         RegisteredServiceProvider<Chat> chatProvider = Bukkit.getServer().getServicesManager().getRegistration(net.milkbowl.vault.chat.Chat.class);
         Chat chat = chatProvider.getProvider();
         String prefix = chat.getPlayerPrefix((Player) player);
-        return FormatUtils.formatText(ConfigUtils.getString("support.message").replace("$prefix$", getPrefix()).replace("$nick$",player.getName()).replace("$message$", argBuilder(args, 0)).replace("$playerprefix$", prefix));
+        return FormatUtils.formatText(ConfigUtils.getMessage("support.message").replace("$prefix$", getPrefix()).replace("$nick$",player.getName()).replace("$message$", argBuilder(args, 0)).replace("$playerprefix$", prefix));
     }
 }

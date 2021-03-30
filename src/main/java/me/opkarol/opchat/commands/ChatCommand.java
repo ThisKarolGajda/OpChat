@@ -1,7 +1,9 @@
 package me.opkarol.opchat.commands;
 
+import me.opkarol.opchat.MessagesFile;
 import me.opkarol.opchat.OpChat;
 import me.opkarol.opchat.PluginController;
+import me.opkarol.opchat.party.PartyHolder;
 import me.opkarol.opchat.utils.ConfigUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -26,40 +28,42 @@ public class ChatCommand implements CommandExecutor{
                                 p2.sendMessage(" ");
                             }
                         }
-                        Bukkit.broadcastMessage(placeHolders(ConfigUtils.getString("messages.chat.clear"), sender));
+                        Bukkit.broadcastMessage(placeHolders(ConfigUtils.getMessage("messages.chat.clear"), sender));
                     } else if (args[0].equalsIgnoreCase("on")) {
                         if (!chat) {
                             chat = true;
-                            sender.sendMessage(placeHolders(ConfigUtils.getString("messages.chat.turnOn.player"), sender));
-                            Bukkit.broadcastMessage(placeHolders(ConfigUtils.getString("messages.chat.turnOn.global"), sender));
+                            sender.sendMessage(placeHolders(ConfigUtils.getMessage("messages.chat.turnOn.player"), sender));
+                            Bukkit.broadcastMessage(placeHolders(ConfigUtils.getMessage("messages.chat.turnOn.global"), sender));
                             return false;
                         }
-                        sender.sendMessage(placeHolders(ConfigUtils.getString("messages.chat.turnOn.already"), sender));
+                        sender.sendMessage(placeHolders(ConfigUtils.getMessage("messages.chat.turnOn.already"), sender));
                         return false;
 
                     } else if (args[0].equalsIgnoreCase("off")) {
                         if (chat) {
                             chat = false;
-                            sender.sendMessage(placeHolders(ConfigUtils.getString("messages.chat.turnOff.player"), sender));
-                            Bukkit.broadcastMessage(placeHolders(ConfigUtils.getString("messages.chat.turnOff.global"), sender));
+                            sender.sendMessage(placeHolders(ConfigUtils.getMessage("messages.chat.turnOff.player"), sender));
+                            Bukkit.broadcastMessage(placeHolders(ConfigUtils.getMessage("messages.chat.turnOff.global"), sender));
                             return false;
                         }
-                        sender.sendMessage(placeHolders(ConfigUtils.getString("messages.chat.turnOff.already"), sender));
+                        sender.sendMessage(placeHolders(ConfigUtils.getMessage("messages.chat.turnOff.already"), sender));
                         return true;
                     } else if (args[0].equalsIgnoreCase("reload")) {
-                        OpChat.opChat.reloadConfig();
-                        OpChat.opChat.saveDefaultConfig();
-                        sender.sendMessage(placeHolders(ConfigUtils.getString("messages.chat.reloadConfig"), sender));
+                        PartyHolder.saveFile();
+                        OpChat.getInstance().saveDefaultConfig();
+                        OpChat.getInstance().reloadConfig();
+                        MessagesFile.saveFile();
+                        sender.sendMessage(placeHolders(ConfigUtils.getMessage("messages.chat.reloadConfig"), sender));
                     } else if (args[0].equalsIgnoreCase("help")){
                         sendHelpMessage(sender);
                     } else {
-                        sender.sendMessage(placeHolders(ConfigUtils.getString("messages.chat.usage"), sender));
+                        sender.sendMessage(placeHolders(ConfigUtils.getMessage("messages.chat.usage"), sender));
                     }
                 } else {
-                    sender.sendMessage(placeHolders(ConfigUtils.getString("messages.chat.usage"), sender));
+                    sender.sendMessage(placeHolders(ConfigUtils.getMessage("messages.chat.usage"), sender));
                 }
             } else {
-                sender.sendMessage(placeHolders(ConfigUtils.getString("messages.chat.withoutPermission"), sender));
+                sender.sendMessage(placeHolders(ConfigUtils.getMessage("messages.chat.withoutPermission"), sender));
             }
         }
         return true;
@@ -71,6 +75,10 @@ public class ChatCommand implements CommandExecutor{
 
     private void sendHelpMessage(CommandSender sender){
         Boolean delayChat = ConfigUtils.getBoolean("delayChat.enabled");
-        sender.sendMessage("DelayChat enabled: " + delayChat);
+        Integer delayCooldown = ConfigUtils.getInt("delayChat.inSeconds");
+        sender.sendMessage("DelayChat enabled: " + delayChat + "\n"
+                +"DelayChat cooldown: " + delayCooldown + "\n"
+                +"AutoMessages interval: "
+                );
     }
 }

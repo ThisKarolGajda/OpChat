@@ -33,7 +33,7 @@ public class ChatDelay implements Listener {
                 long now = currentTimeMillis();
                 long diff = now - lastChat;
                 if (!(diff >= SecondsDelay() * 1000L)) {
-                    event.getPlayer().sendMessage(ConfigUtils.getString("messages.delayChat.delayChatWarn").replace("%secondsDelayChat%", SecondsChatDelay()));
+                    event.getPlayer().sendMessage(ConfigUtils.getMessage("messages.delayChat.delayChatWarn").replace("%secondsDelayChat%", SecondsChatDelay()));
                     event.setCancelled(true);
                 }
                 delayMap.put(id, currentTimeMillis());
@@ -45,7 +45,7 @@ public class ChatDelay implements Listener {
     }
 
     private String SecondsChatDelay(){
-        return ConfigUtils.getString("delayChat.inSeconds").replace("%secondsDelayChat%", String.valueOf(SecondsDelay()));
+        return ConfigUtils.getMessage("delayChat.inSeconds").replace("%secondsDelayChat%", String.valueOf(SecondsDelay()));
     }
 
     @EventHandler

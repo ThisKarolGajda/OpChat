@@ -28,7 +28,7 @@ public class ChatManagerEvent implements Listener {
     public boolean setPlayerMessages(Player player, String message){
         if(playerMessages.containsKey(player)){
             if(playerMessages.get(player).contains(message)){
-                player.sendMessage(ConfigUtils.getString(path+"antiTwiceMessages.message"));
+                player.sendMessage(ConfigUtils.getMessage(path+"antiTwiceMessages.message"));
                 return true;
             }
         }
@@ -68,7 +68,7 @@ public class ChatManagerEvent implements Listener {
     }
     public String colorFormatting(Player player, String message){
         if(ConfigUtils.getBoolean(path+"colorFormatting.enabled")) {
-            if (player.hasPermission(path + "colorFormatting.permission") || player.isOp()) {
+            if (player.hasPermission(ConfigUtils.getString(path+ "colorFormatting.permission")) || player.isOp()) {
                 return FormatUtils.formatText(message);
             }
         }
@@ -84,12 +84,14 @@ public class ChatManagerEvent implements Listener {
         Player player = event.getPlayer();
         String message = event.getMessage();
         if(ConfigUtils.getBoolean(path+"unicodeEmojis.enabled")) {
-            ConfigurationSection sec = ConfigUtils.config().getConfigurationSection(path + "unicodeEmojis.emojis");
-            if (sec != null) {
-                for (String key : sec.getKeys(false)) {
-                    String emoji = ConfigUtils.getString(path + "unicodeEmojis.emojis." + key);
-                    message = message.replace(key, emoji);
-                    event.setMessage(message);
+            if (player.hasPermission(ConfigUtils.getString(path + "unicodeEmojis.permission")) || player.isOp()) {
+                ConfigurationSection sec = ConfigUtils.config().getConfigurationSection(path + "unicodeEmojis.emojis");
+                if (sec != null) {
+                    for (String key : sec.getKeys(false)) {
+                        String emoji = ConfigUtils.getString(path + "unicodeEmojis.emojis." + key);
+                        message = message.replace(key, emoji);
+                        event.setMessage(message);
+                    }
                 }
             }
         }
@@ -108,7 +110,7 @@ public class ChatManagerEvent implements Listener {
     }
     public String periodAndBigLetter(Player player, String message){
         String Message = message.toLowerCase();
-        if(player.hasPermission(path+"periodAndBigLetter.permission") || player.isOp()){
+        if(player.hasPermission(ConfigUtils.getString(path+"periodAndBigLetter.permission")) || player.isOp()){
             if (Message.length() > 3) {
                 if (Message.endsWith(".") || Message.endsWith("?") || Message.endsWith("!")) {
                     return ("" + Message.charAt(0)).toUpperCase() + Message.substring(1);
@@ -128,7 +130,7 @@ public class ChatManagerEvent implements Listener {
 
 
     /*
-    blokowanie slow
     cooldown na msg
+    /party
      */
 }

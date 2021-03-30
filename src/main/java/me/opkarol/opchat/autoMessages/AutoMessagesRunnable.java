@@ -1,5 +1,6 @@
 package me.opkarol.opchat.autoMessages;
 
+import me.opkarol.opchat.MessagesFile;
 import me.opkarol.opchat.OpChat;
 import me.opkarol.opchat.PluginController;
 import me.opkarol.opchat.utils.ConfigUtils;
@@ -14,7 +15,7 @@ public class AutoMessagesRunnable implements Listener {
     public AutoMessagesRunnable(PluginController plugin) {
         autoMessageStart(messagesFromConfig);
     }
-    List<String> messagesFromConfig = ConfigUtils.config().getStringList("autoMessages.messages");
+    List<String> messagesFromConfig = MessagesFile.messagesConfig.getStringList("autoMessages.messages");
 
     public static void autoMessageStart(List<String> messagesFromConfig){
         new BukkitRunnable() {

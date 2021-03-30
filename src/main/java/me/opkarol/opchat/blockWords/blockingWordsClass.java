@@ -21,6 +21,6 @@ public class blockingWordsClass {
     }
 
     public static void sendPlayerWarning(Player player){
-        player.sendMessage(ConfigUtils.getString("blockedWords.warning"));
+        player.sendMessage(ConfigUtils.getMessage("blockedWords.warning"));
     }
 }

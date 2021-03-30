@@ -15,8 +15,8 @@ import java.util.HashMap;
 
 public class MainMsg implements CommandExecutor {
     public MainMsg(PluginController chatSystem){}
-    final static String SendFormat = ConfigUtils.getString("msg.sendFormat");
-    final static String ReceiveFormat = ConfigUtils.getString("msg.receiveFormat");
+    final static String SendFormat = ConfigUtils.getMessage("msg.sendFormat");
+    final static String ReceiveFormat = ConfigUtils.getMessage("msg.receiveFormat");
 
     public static HashMap<Player, Player> lastPlayer = new HashMap<Player, Player>();
     //                    sender  receiver
@@ -25,18 +25,18 @@ public class MainMsg implements CommandExecutor {
     public boolean onCommand(CommandSender Sender, Command cmd, String label, String[] args) {
         Player sender = (Player) Sender;
         if(args.length <= 1) {
-            sender.sendMessage(ConfigUtils.getString("msg.badUsage"));
+            sender.sendMessage(ConfigUtils.getMessage("msg.badUsage"));
             return false;
         }
         Player receiver = Bukkit.getPlayer(args[0]);
         if (Ignore.ignore.containsKey(receiver)) {
             if (Ignore.ignore.get(receiver).contains(sender)) {
-                sender.sendMessage(ConfigUtils.getString("msg.youCantMessagePlayer"));
+                sender.sendMessage(ConfigUtils.getMessage("msg.youCantMessagePlayer"));
                 return false;
             }
         }
         if(sender==receiver && !ConfigUtils.getBoolean("msg.canMessageYourself")){
-            sender.sendMessage(ConfigUtils.getString("msg.cannotMsgYourselfMessage"));
+            sender.sendMessage(ConfigUtils.getMessage("msg.cannotMsgYourselfMessage"));
             return false;
 
         }
@@ -52,7 +52,7 @@ public class MainMsg implements CommandExecutor {
             sendRealMessages(args, sender, receiver);
             setLastSender(sender, receiver);
         } else {
-            sender.sendMessage(ConfigUtils.getString("msg.playerOffline"));
+            sender.sendMessage(ConfigUtils.getMessage("msg.playerOffline"));
         }
         return true;
     }

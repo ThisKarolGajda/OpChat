@@ -8,6 +8,9 @@ import java.util.List;
 public class FormatUtils {
 
     public static String formatText(String toFormat) {
+        if(toFormat==null){
+            return "Message isnt loaded!";
+        }
         return ChatColor.translateAlternateColorCodes('&', toFormat);
     }
 

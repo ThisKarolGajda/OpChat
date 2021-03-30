@@ -18,24 +18,24 @@ public class Spy implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender Sender, Command cmd, String label, String[] args) {
         Player sender = (Player) Sender;
-        if(!sender.hasPermission(ConfigUtils.getString("spy.permission"))||!sender.isOp()){
-            sender.sendMessage(ConfigUtils.getString("spy.withoutPermission"));
+        if(!sender.hasPermission(ConfigUtils.getMessage("spy.permission"))||!sender.isOp()){
+            sender.sendMessage(ConfigUtils.getMessage("spy.withoutPermission"));
             return false;
         }
         UUID playerUuid = sender.getUniqueId();
         if(SpyHolder.isActiveSpy(playerUuid)){
             SpyHolder.removeActiveSpy(playerUuid);
-            sender.sendMessage(ConfigUtils.getString("spy.deactivatedSpy"));
+            sender.sendMessage(ConfigUtils.getMessage("spy.deactivatedSpy"));
         } else {
             SpyHolder.setActiveSpy(playerUuid);
-            sender.sendMessage(ConfigUtils.getString("spy.activatedSpy"));
+            sender.sendMessage(ConfigUtils.getMessage("spy.activatedSpy"));
         }
 
         return false;
     }
 
     public static void sendSpyMessages(String message, Player sender, Player receiver){
-        String getSpyFormat = ConfigUtils.getString("spy.format");
+        String getSpyFormat = ConfigUtils.getMessage("spy.format");
         String messageToSend = getSpyFormat.replace("%sender%", sender.getName()).replace("%receiver%", receiver.getName()).replace("%message%", message);
         for(UUID playerId : SpyHolder.getActiveSpyList()){
             Player player = Bukkit.getPlayer(playerId);

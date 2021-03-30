@@ -19,9 +19,9 @@ public class Broadcast implements CommandExecutor {
         if (sender != null) {
             if (sender.hasPermission("skyisland.chatsystem.broadcast") || sender.isOp()) {
                 if (args.length != 0) {
-                    Bukkit.broadcastMessage(ConfigUtils.getString("broadcast.prefix") + argBuilder(args, 0));
-                } else sender.sendMessage(ConfigUtils.getString("messages.chat.badUsage"));
-            } else sender.sendMessage(ConfigUtils.getString("messages.chat.withoutPermission"));
+                    Bukkit.broadcastMessage(ConfigUtils.getMessage("broadcast.prefix") + argBuilder(args, 0));
+                } else sender.sendMessage(ConfigUtils.getMessage("messages.chat.badUsage"));
+            } else sender.sendMessage(ConfigUtils.getMessage("messages.chat.withoutPermission"));
         }
         return true;
     }

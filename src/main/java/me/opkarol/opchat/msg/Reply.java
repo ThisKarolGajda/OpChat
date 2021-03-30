@@ -19,13 +19,13 @@ public class Reply implements CommandExecutor {
     public boolean onCommand(CommandSender Sender, Command cmd, String label, String[] args) {
         Player sender = (Player) Sender;
         if(args.length == 0) {
-            sender.sendMessage(ConfigUtils.getString("reply.badUsage"));
+            sender.sendMessage(ConfigUtils.getMessage("reply.badUsage"));
             return false;
         }
         Player receiver = lastPlayer.get(sender);
         if (Ignore.ignore.containsKey(receiver)) {
             if (Ignore.ignore.get(receiver).contains(sender)) {
-                sender.sendMessage(ConfigUtils.getString("msg.youCantMessagePlayer"));
+                sender.sendMessage(ConfigUtils.getMessage("msg.youCantMessagePlayer"));
                 return false;
             }
         }
@@ -41,7 +41,7 @@ public class Reply implements CommandExecutor {
             sendRealMessages(args, sender, receiver);
             setLastSender(sender, receiver);
         } else {
-            sender.sendMessage(ConfigUtils.getString("reply.lastPersonOffline"));
+            sender.sendMessage(ConfigUtils.getMessage("reply.lastPersonOffline"));
         }
         return false;
     }

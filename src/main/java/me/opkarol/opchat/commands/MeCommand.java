@@ -31,21 +31,21 @@ public class MeCommand implements CommandExecutor{
                         }
                     }
                     Bukkit.broadcastMessage(mePrefix(sender, args));
-                } else sender.sendMessage(ConfigUtils.getString("messages.chat.badUsage"));
-            } else sender.sendMessage(ConfigUtils.getString("messages.chat.withoutPermission"));
+                } else sender.sendMessage(ConfigUtils.getMessage("messages.chat.badUsage"));
+            } else sender.sendMessage(ConfigUtils.getMessage("messages.chat.withoutPermission"));
         }
         return true;
     }
 
     public String getPrefix(){
-        return ConfigUtils.getString("me.prefix");
+        return ConfigUtils.getMessage("me.prefix");
     }
 
     private String mePrefix(CommandSender player, String[] args){
         RegisteredServiceProvider<Chat> chatProvider = Bukkit.getServer().getServicesManager().getRegistration(net.milkbowl.vault.chat.Chat.class);
         Chat chat = chatProvider.getProvider();
         String prefix = FormatUtils.formatText(chat.getPlayerPrefix((Player) player));
-        return Objects.requireNonNull(ConfigUtils.getString("me.message")).replace("$prefix$", getPrefix()).replace("$nick$", player.getName()).replace("$message$", argBuilder(args, 0)).replace("$playerprefix$", prefix);
+        return Objects.requireNonNull(ConfigUtils.getMessage("me.message")).replace("$prefix$", getPrefix()).replace("$nick$", player.getName()).replace("$message$", argBuilder(args, 0)).replace("$playerprefix$", prefix);
 
     }
 }
